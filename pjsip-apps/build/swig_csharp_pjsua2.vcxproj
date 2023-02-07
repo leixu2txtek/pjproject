@@ -44,7 +44,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
     <CLRSupport>true</CLRSupport>
   </PropertyGroup>
@@ -265,7 +265,7 @@
 
 %40echo on
 %40echo Building pjsua2.dll to $(OutDir)
-swig -c++ -csharp  -w312 -namespace pjsua2xamarin.pjsua2 -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
+swig -c++ -csharp  -w312 -namespace pj -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(OutDir)pjsua2_wrap.cpp;$(OutDir)pjsua2_wrap.h;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%40echo off
@@ -277,7 +277,7 @@ swig -c++ -csharp  -w312 -namespace pjsua2xamarin.pjsua2 -I$(ProjectDir)..\..\pj
 
 %40echo on
 %40echo Building pjsua2.dll to $(OutDir)
-swig -c++ -csharp  -w312 -namespace pjsua2xamarin.pjsua2 -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
+swig -c++ -csharp  -w312 -namespace pj -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
 </Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">%40echo off
 %40echo **************************************************************
@@ -299,7 +299,7 @@ swig -c++ -csharp  -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib
 
 %40echo on
 %40echo Building pjsua2.dll to $(OutDir)
-swig -c++ -csharp  -w312 -namespace pjsua2xamarin.pjsua2 -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
+swig -c++ -csharp  -w312 -namespace pj -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
 </Command>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(OutDir)pjsua2_wrap.cpp;$(OutDir)pjsua2_wrap.h;%(Outputs)</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%40echo off
@@ -311,7 +311,7 @@ swig -c++ -csharp  -w312 -namespace pjsua2xamarin.pjsua2 -I$(ProjectDir)..\..\pj
 
 %40echo on
 %40echo Building pjsua2.dll to $(OutDir)
-swig -c++ -csharp  -w312 -namespace pjsua2xamarin.pjsua2 -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
+swig -c++ -csharp  -w312 -namespace pj -I$(ProjectDir)..\..\pjsip\include -I$(ProjectDir)..\..\pjlib\include -o $(OutDir)pjsua2_wrap.cpp %(FullPath)
 </Command>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">%40echo off
 %40echo **************************************************************
