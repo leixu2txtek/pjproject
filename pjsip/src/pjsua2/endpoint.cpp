@@ -803,6 +803,24 @@ void Endpoint::on_transport_state( pjsip_transport *tp,
     ep.onTransportState(prm);
 }
 
+
+void Endpoint::on_aud_prev_play_frame(pjmedia_frame *frame) {
+
+    Endpoint &ep = Endpoint::instance();
+    MediaFrameParam prm;
+
+    prm.type = frame->type;
+    prm.size = frame->size;
+    prm.buf = frame->buf;
+    prm.bit_info = frame->bit_info;
+
+    ep.OnAudPrevPlayFrame(prm);
+}
+
+void Endpoint::on_aud_prev_rec_frame(pjmedia_frame *frame) {
+
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 /*
  * Account static callbacks
@@ -1939,13 +1957,15 @@ void Endpoint::libInit(const EpConfig &prmEpConfig) PJSUA2_THROW(Error)
     ua_cfg.cb.on_call_rx_reinvite       = &Endpoint::on_call_rx_reinvite;
     ua_cfg.cb.on_call_tx_offer          = &Endpoint::on_call_tx_offer;
     ua_cfg.cb.on_call_redirected        = &Endpoint::on_call_redirected;
-    ua_cfg.cb.on_call_media_transport_state =
-        &Endpoint::on_call_media_transport_state;
+    ua_cfg.cb.on_call_media_transport_state = &Endpoint::on_call_media_transport_state;
     ua_cfg.cb.on_media_event            = &Endpoint::on_media_event;
     ua_cfg.cb.on_call_media_event       = &Endpoint::on_call_media_event;
     ua_cfg.cb.on_create_media_transport = &Endpoint::on_create_media_transport;
-    ua_cfg.cb.on_stun_resolution_complete = 
-        &Endpoint::stun_resolve_cb;
+    ua_cfg.cb.on_stun_resolution_complete = &Endpoint::stun_resolve_cb;
+
+    /* Setup aud stream callback */
+    med_cfg.on_aud_prev_play_frame = &Endpoint::on_aud_prev_play_frame;
+    med_cfg.on_aud_prev_rec_frame = &Endpoint::on_aud_prev_rec_frame;
 
     /* Init! */
     PJSUA2_CHECK_EXPR( pjsua_init(&ua_cfg, &log_cfg, &med_cfg) );

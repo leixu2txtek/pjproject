@@ -584,6 +584,17 @@ struct OnCredAuthParam
     DigestCredential digestCredential;
 };
 
+/**
+ * 
+ */
+struct MediaFrameParam
+{
+    pjmedia_frame_type   type;
+    void                 *buf;
+    size_t               size;
+    unsigned int         bit_info;
+};
+
 //////////////////////////////////////////////////////////////////////////////
 /**
  * SIP User Agent related settings.
@@ -1895,6 +1906,19 @@ public:
      */
     virtual pj_status_t onCredAuth(OnCredAuthParam &prm);
 
+    /**
+     * 自定义函数，用于输出音频流
+     */
+    virtual void OnAudPrevPlayFrame(MediaFrameParam &prm)
+    { 
+        PJ_UNUSED_ARG(prm); 
+    }
+
+    virtual void OnAudPrevRecFrame(MediaFrameParam &prm)
+    {
+        PJ_UNUSED_ARG(prm);
+    }
+
 private:
     static Endpoint             *instance_;     // static instance
     LogWriter                   *writer;        // Custom writer, if any
@@ -1928,6 +1952,9 @@ private:
     static void on_transport_state(pjsip_transport *tp,
                                    pjsip_transport_state state,
                                    const pjsip_transport_state_info *info);
+
+    static void on_aud_prev_play_frame(pjmedia_frame* frame);
+    static void on_aud_prev_rec_frame(pjmedia_frame* frame);
 
 private:
     /*
